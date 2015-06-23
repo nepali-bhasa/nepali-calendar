@@ -1,6 +1,11 @@
 /**
  * transparent.h
  *
+ * Code adapted from 'alphademo.c' by Mike
+ * (http://plan99.net/~mike/blog--now a dead link--unable to find it.)
+ * as modified by karlphillip for StackExchange:
+ *     (http://stackoverflow.com/questions/3908565/how-to-make-gtk-window-background-transparent)
+ * Re-worked for Gtkmm 3.0 by Louis Melahn, L.C. January 31, 2014.
  */
 
 #ifndef TRANSPARENT_H_
