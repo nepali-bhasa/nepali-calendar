@@ -2,7 +2,6 @@
  * main.cpp
  *
  */
-
 #include <gtkmm.h>
 #include "WindowTransparent.h"
 
