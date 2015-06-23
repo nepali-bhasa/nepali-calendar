@@ -16,7 +16,6 @@ Ad::Ad(const Bs& b):Date() {
     totalDays = difference(data->min());
 }
 
-
 int Ad::operator-(const Ad& b) const {
     return difference(b.daet);
 }

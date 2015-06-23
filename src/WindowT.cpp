@@ -4,13 +4,14 @@
  */
 #include "../include/WindowT.h"
 
-WindowT::WindowT(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refGlade)
-    : Gtk::Window(cobject),
-      m_builder(refGlade),
-      m_box(NULL),
-      m_labelDate(NULL),
-      m_labelMonth(NULL),
-      m_supportsAlpha(false) {
+WindowT::WindowT(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refGlade) :
+    Gtk::Window(cobject),
+    m_builder(refGlade),
+    m_box(NULL),
+    m_labelDate(NULL),
+    m_labelMonth(NULL),
+    m_supportsAlpha(false)
+{
     // Widgets
     m_builder->get_widget("box", m_box);
     m_builder->get_widget("date", m_labelDate);
@@ -29,14 +30,12 @@ WindowT::WindowT(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refG
     //_button.signal_clicked().connect(sigc::mem_fun(*this, &WindowT::on_button_clicked));
 
 
-
     // Get system date;
     time_t rawtime = time(NULL);
     struct tm * timeinfo = localtime(&rawtime);
 
-    // Create an Ad object using system date
+    // Create an Ad object using system date and Bs object from Ad
     Ad ad(timeinfo->tm_year + 1900, timeinfo->tm_mon + 1, timeinfo->tm_mday);
-    // Create a Bs object using Ad
     Bs bs(ad);
 
     // Modifiy content
@@ -74,7 +73,8 @@ void WindowT::move_to_bottomright(gint padding) {
  * Checks to see if the display supports alpha channels
  */
 void WindowT::on_screen_changed(const Glib::RefPtr<Gdk::Screen>& previous_screen) {
-    auto visual = previous_screen->get_rgba_visual();
+    auto screen = get_screen();
+    auto visual = screen->get_rgba_visual();
     if (visual)
         m_supportsAlpha = TRUE;
     // BugProbable: visual is 0
@@ -107,4 +107,3 @@ void WindowT::on_button_clicked() {
     std::cout << "The button was pressed." << std::endl;
 }
 */
-
