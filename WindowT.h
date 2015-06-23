@@ -1,11 +1,6 @@
 /**
  * transparent.h
  *
- * Code adapted from 'alphademo.c' by Mike
- * (http://plan99.net/~mike/blog--now a dead link--unable to find it.)
- * as modified by karlphillip for StackExchange:
- *     (http://stackoverflow.com/questions/3908565/how-to-make-gtk-window-background-transparent)
- * Re-worked for Gtkmm 3.0 by Louis Melahn, L.C. January 31, 2014.
  */
 
 #ifndef TRANSPARENT_H_
@@ -21,25 +16,25 @@
 
 class WindowT : public Gtk::Window {
 public:
-    WindowT();
+    WindowT(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refGlade);
     virtual ~WindowT();
 
 protected:
-    // Signal handlers:
-
     virtual bool on_draw(const ::Cairo::RefPtr< ::Cairo::Context>& cr);
     void on_screen_changed(const Glib::RefPtr<Gdk::Screen>& previous_screen);
-
     void move_to_bottomright(gint padding);
-
-    //void on_button_clicked();
     bool on_window_clicked(GdkEventButton* event);
+    //void on_button_clicked();
 
     // Member widgets:
+    Glib::RefPtr<Gtk::Builder> m_builder;
+    Gtk::Box* m_box;
+    Gtk::Label* m_labelDate;
+    Gtk::Label* m_labelMonth;
     // Gtk::Button _button;
 
 private:
-    bool _SUPPORTS_ALPHA = false;
+    bool m_supportsAlpha;
 };
 
 #endif /* TRANSPARENT_H_ */
