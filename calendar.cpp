@@ -3,7 +3,7 @@
  *
  */
 #include <gtkmm.h>
-#include "WindowT.h"
+#include "include/WindowT.h"
 
 int main (int argc, char *argv[]) {
     Glib::RefPtr<Gtk::Application> app =
@@ -32,5 +32,3 @@ int main (int argc, char *argv[]) {
 
     return 0;
 }
-
-

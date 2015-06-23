@@ -7,12 +7,12 @@
 #define TRANSPARENT_H_
 
 #include <iostream>
-
+#include <string>
 #include <gtk/gtk.h>
 #include <gtkmm.h>
-#include <gtkmm/window.h>
-#include <gtkmm/button.h>
-#include <gtkmm/alignment.h>
+#include "../include/Ad.h"
+#include "../include/Bs.h"
+#include "../include/helper.h"
 
 class WindowT : public Gtk::Window {
 public:

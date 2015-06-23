@@ -2,16 +2,15 @@
  * transparent.cpp
  *
  */
-#include "WindowT.h"
+#include "../include/WindowT.h"
 
 WindowT::WindowT(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refGlade)
-: Gtk::Window(cobject),
-  m_builder(refGlade),
-  m_box(NULL),
-  m_labelDate(NULL),
-  m_labelMonth(NULL),
-  m_supportsAlpha(false)
-{
+    : Gtk::Window(cobject),
+      m_builder(refGlade),
+      m_box(NULL),
+      m_labelDate(NULL),
+      m_labelMonth(NULL),
+      m_supportsAlpha(false) {
     // Widgets
     m_builder->get_widget("box", m_box);
     m_builder->get_widget("date", m_labelDate);
@@ -29,9 +28,20 @@ WindowT::WindowT(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refG
     signal_button_press_event().connect(sigc::mem_fun(*this, &WindowT::on_window_clicked));
     //_button.signal_clicked().connect(sigc::mem_fun(*this, &WindowT::on_button_clicked));
 
+
+
+    // Get system date;
+    time_t rawtime = time(NULL);
+    struct tm * timeinfo = localtime(&rawtime);
+
+    // Create an Ad object using system date
+    Ad ad(timeinfo->tm_year + 1900, timeinfo->tm_mon + 1, timeinfo->tm_mday);
+    // Create a Bs object using Ad
+    Bs bs(ad);
+
     // Modifiy content
-    m_labelDate->set_text("10");
-    m_labelMonth->set_text("2012 Jan");
+    m_labelDate->set_text(anka(bs.day(),UNI));
+    m_labelMonth->set_text(anka(bs.year(),UNI)+" "+mahina(bs.month(),UNI));
 
     // Move to bottom right of the screen
     move_to_bottomright(30);
@@ -97,3 +107,4 @@ void WindowT::on_button_clicked() {
     std::cout << "The button was pressed." << std::endl;
 }
 */
+
