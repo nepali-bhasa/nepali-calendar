@@ -1,9 +1,9 @@
 #ifndef __BS__
 #define __BS__
 
-#include "Date.h"
-#include "../include/BsData.h"
-#include "../include/Ad.h"
+#include "nepalical/Date.h"
+#include "nepalical/BsData.h"
+#include "nepalical/Ad.h"
 
 class Ad;
 

@@ -1,9 +1,9 @@
 #ifndef __DATAA__
 #define __DATAA__
 
-#include "ex.h"
-#include "Ymd.h"
-#include "iostream"
+#include "nepalical/ex.h"
+#include "nepalical/Ymd.h"
+#include <iostream>
 
 class Data {
 private:

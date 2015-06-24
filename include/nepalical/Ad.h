@@ -1,8 +1,8 @@
 #ifndef __AD__
 #define __AD__
 
-#include "Date.h"
-#include "../include/AdData.h"
+#include "nepalical/Date.h"
+#include "nepalical/AdData.h"
 class Bs;
 
 class Ad:public Date {

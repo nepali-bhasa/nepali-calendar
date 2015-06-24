@@ -1,7 +1,7 @@
 #ifndef __ADDATA__
 #define __ADDATA__
 
-#include "Data.h"
+#include "nepalical/Data.h"
 
 class AdData:public Data {
 private:

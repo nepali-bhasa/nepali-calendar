@@ -1,7 +1,7 @@
 #ifndef __BSDATA__
 #define __BSDATA__
 
-#include "Data.h"
+#include "nepalical/Data.h"
 
 class BsData:public Data {
 private:

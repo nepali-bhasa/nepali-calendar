@@ -2,7 +2,7 @@
  * transparent.cpp
  *
  */
-#include "../include/WindowT.h"
+#include "nepalical/WindowT.h"
 
 WindowT::WindowT(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refGlade) :
     Gtk::Window(cobject),

@@ -3,7 +3,7 @@
  *
  */
 #include <gtkmm.h>
-#include "include/WindowT.h"
+#include "nepalical/WindowT.h"
 
 int main (int argc, char *argv[]) {
     Glib::RefPtr<Gtk::Application> app =
@@ -11,7 +11,7 @@ int main (int argc, char *argv[]) {
 
     Glib::RefPtr<Gtk::Builder> builder = Gtk::Builder::create();
     try {
-        builder->add_from_file("nepalical.glade");
+        builder->add_from_file("/usr/share/nepalical/nepalical.glade");
     } catch(const Glib::FileError& ex) {
         std::cerr << "FileError: " << ex.what() << std::endl;
         return 1;

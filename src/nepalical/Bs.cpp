@@ -1,5 +1,5 @@
-#include "../include/Bs.h"
-#include "../include/Ad.h"
+#include "nepalical/Bs.h"
+#include "nepalical/Ad.h"
 
 
 Bs::Bs():Date(new BsData()) {}

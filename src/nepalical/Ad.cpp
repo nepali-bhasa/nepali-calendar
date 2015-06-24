@@ -1,5 +1,5 @@
-#include "../include/Ad.h"
-#include "../include/Bs.h"
+#include "nepalical/Ad.h"
+#include "nepalical/Bs.h"
 
 Ad::Ad():Date(new AdData()) {}
 

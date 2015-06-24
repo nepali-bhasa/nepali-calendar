@@ -10,9 +10,9 @@
 #include <string>
 #include <gtk/gtk.h>
 #include <gtkmm.h>
-#include "../include/Ad.h"
-#include "../include/Bs.h"
-#include "../include/helper.h"
+#include "nepalical/Ad.h"
+#include "nepalical/Bs.h"
+#include "nepalical/helper.h"
 
 class WindowT : public Gtk::Window {
 public:

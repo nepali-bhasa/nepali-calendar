@@ -1,7 +1,7 @@
 #ifndef __YMD__
 #define __YMD__
 
-#include "ex.h"
+#include "nepalical/ex.h"
 
 typedef unsigned short int suint;
 
