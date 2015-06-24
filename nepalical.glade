@@ -28,9 +28,9 @@
             <property name="can_focus">False</property>
             <property name="label" translatable="yes">८</property>
             <attributes>
-              <attribute name="font-desc" value="Arsenal 10"/>
+              <attribute name="font-desc" value="Arial 40"/>
               <attribute name="weight" value="bold"/>
-              <attribute name="scale" value="4"/>
+              <attribute name="scale" value="1"/>
               <attribute name="foreground" value="#fcfcafaf3e3e"/>
             </attributes>
           </object>
@@ -44,12 +44,13 @@
           <object class="GtkLabel" id="month">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="margin_top">7</property>
             <property name="margin_bottom">7</property>
             <property name="label" translatable="yes">२०७२ आषाढ</property>
             <attributes>
-              <attribute name="font-desc" value="Arsenal 10"/>
+              <attribute name="font-desc" value="Arial 14"/>
               <attribute name="weight" value="bold"/>
-              <attribute name="scale" value="1.5"/>
+              <attribute name="scale" value="1"/>
               <attribute name="foreground" value="#eeeeeeeeecec"/>
             </attributes>
           </object>

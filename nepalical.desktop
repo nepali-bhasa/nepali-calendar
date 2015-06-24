@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=Nepali Calendar
+Comment=A calendar application
+Icon=preferences-system-notifications
+Terminal=false
+Exec=nepalical
+Keywords=Calendar;Nepali;
