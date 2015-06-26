@@ -1,5 +1,5 @@
 # Get home directory
-HOME=`echo ~`
+HOM=`echo ~`
 
 INCDIR:=include
 SRCDIR:=src
@@ -41,13 +41,13 @@ install:
 	mkdir "/usr/share/nepalical" -p
 	cp "nepalical.glade" "/usr/share/nepalical" -f
 	cp "bin/nepalical" "/usr/local/bin" -f
-	mkdir "$(HOME)/.local/share/applications" -p
-	cp "nepalical.desktop" "$(HOME)/.local/share/applications" -f
-	mkdir "$(HOME)/.config/autostart" -p
-	cp "nepalical.desktop" "$(HOME)/.config/autostart" -f
+	mkdir "$(HOM)/.local/share/applications" -p
+	cp "nepalical.desktop" "$(HOM)/.local/share/applications" -f
+	mkdir "$(HOM)/.config/autostart" -p
+	cp "nepalical.desktop" "$(HOM)/.config/autostart" -f
 
 uninstall:
-	rm /usr/share/nepalical -r
-	rm /usr/local/bin/nepalical
-	rm "$(HOME)/.local/share/applications/nepalical.desktop"
-	rm "$(HOME)/.config/autostart/nepalical.desktop"
+	rm /usr/share/nepalical -r -f
+	rm /usr/local/bin/nepalical -f
+	rm "$(HOM)/.config/autostart/nepalical.desktop" -f
+	rm "$(HOM)/.local/share/applications/nepalical.desktop" -f
