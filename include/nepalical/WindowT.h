@@ -35,6 +35,9 @@ protected:
 
 private:
     bool m_supportsAlpha;
+
+    Bs getToday() const;
+    bool updateToday();
 };
 
 #endif /* TRANSPARENT_H_ */

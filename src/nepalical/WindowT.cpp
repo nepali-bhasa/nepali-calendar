@@ -28,19 +28,10 @@ WindowT::WindowT(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refG
     signal_screen_changed().connect(sigc::mem_fun(*this, &WindowT::on_screen_changed));
     signal_button_press_event().connect(sigc::mem_fun(*this, &WindowT::on_window_clicked));
     //_button.signal_clicked().connect(sigc::mem_fun(*this, &WindowT::on_button_clicked));
+    Glib::signal_timeout().connect(mem_fun(*this, &WindowT::updateToday), 60*1000); // A minute
 
-
-    // Get system date;
-    time_t rawtime = time(NULL);
-    struct tm * timeinfo = localtime(&rawtime);
-
-    // Create an Ad object using system date and Bs object from Ad
-    Ad ad(timeinfo->tm_year + 1900, timeinfo->tm_mon + 1, timeinfo->tm_mday);
-    Bs bs(ad);
-
-    // Modifiy content
-    m_labelDate->set_text(anka(bs.day(),UNI));
-    m_labelMonth->set_text(anka(bs.year(),UNI)+" "+mahina(bs.month(),UNI));
+    // Modify
+    updateToday();
 
     // Move to bottom right of the screen
     move_to_bottomright(30);
@@ -51,6 +42,22 @@ WindowT::WindowT(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refG
 }
 
 WindowT::~WindowT() {
+}
+
+bool WindowT::updateToday() {
+    Bs bs = getToday();
+    m_labelDate->set_text(anka(bs.day(),UNI));
+    m_labelMonth->set_text(anka(bs.year(),UNI)+" "+mahina(bs.month(),UNI));
+    return true;
+}
+
+Bs WindowT::getToday() const {
+    // Get system date;
+    time_t rawtime = time(NULL);
+    struct tm * timeinfo = localtime(&rawtime);
+    // Create an Ad object using system date and Bs object from Ad
+    Ad ad(timeinfo->tm_year + 1900, timeinfo->tm_mon + 1, timeinfo->tm_mday);
+    return Bs(ad);
 }
 
 void WindowT::move_to_bottomright(gint padding) {
