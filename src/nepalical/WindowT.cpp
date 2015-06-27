@@ -79,44 +79,35 @@ bool WindowT::updateToday() {
     m_labelMonth->set_text(mahina(bs.month(),UNI));
 
     Gtk::Label* m_labelNep= NULL;
-    Gtk::Label* m_labelEng= NULL;
 
     for(int i=1;i<=j;i++){
         m_builder->get_widget("complete.nep"+std::to_string(i), m_labelNep);
-        m_builder->get_widget("complete.eng"+std::to_string(i), m_labelEng);
         m_labelNep->set_text("");
-        m_labelEng->set_text("");
-            m_labelNep->unset_background_color(Gtk::STATE_FLAG_NORMAL);
-            m_labelEng->unset_background_color(Gtk::STATE_FLAG_NORMAL);
     }
 
-
     for(int i=1, k=ad.day();i<=bs.daysInMonth();i++,k++){
-        m_builder->get_widget("complete.nep"+std::to_string(j+i), m_labelNep);
-        m_builder->get_widget("complete.eng"+std::to_string(j+i), m_labelEng);
-
-
-        if(i==bs.day()){
-            m_labelNep->override_background_color(Gdk::RGBA("#fcfcafaf3e3e"), Gtk::STATE_FLAG_NORMAL);
-            m_labelEng->override_background_color(Gdk::RGBA("#fcfcafaf3e3e"), Gtk::STATE_FLAG_NORMAL);
-        } else {
-            m_labelNep->unset_background_color(Gtk::STATE_FLAG_NORMAL);
-            m_labelEng->unset_background_color(Gtk::STATE_FLAG_NORMAL);
-        }
-        m_labelNep->set_text(anka(i,UNI));
-
         if(k>ad.daysInMonth())
             k = 1;
-        m_labelEng->set_text(std::to_string(k));
+
+        m_builder->get_widget("complete.nep"+std::to_string(j+i), m_labelNep);
+
+        if(i==bs.day()){
+            m_labelNep->set_markup(
+                    " <span font='14' fgcolor='#fcfcafaf3e3e'><b>"+anka(i,Lipi::UNI)+" </b></span>"
+                    "<span font='8' fgcolor='#fcfcafaf3e3e'><sub>"+std::to_string(k)+"</sub></span>"
+                    );
+        } else {
+            m_labelNep->set_markup(
+                    " <span font='14' fgcolor='white'>"+anka(i,Lipi::UNI)+" </span>"
+                    "<span font='8' fgcolor='white'><sub>"+std::to_string(k)+"</sub></span>"
+                    );
+        }
+
     }
 
     for(int i=bs.daysInMonth()+j+1;i<=35;i++){
         m_builder->get_widget("complete.nep"+std::to_string(i), m_labelNep);
-        m_builder->get_widget("complete.eng"+std::to_string(i), m_labelEng);
         m_labelNep->set_text("");
-        m_labelEng->set_text("");
-            m_labelNep->unset_background_color(Gtk::STATE_FLAG_NORMAL);
-            m_labelEng->unset_background_color(Gtk::STATE_FLAG_NORMAL);
     }
 
     return true;
