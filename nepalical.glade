@@ -4,7 +4,7 @@
   <requires lib="gtk+" version="3.12"/>
   <object class="GtkWindow" id="win">
     <property name="can_focus">False</property>
-    <property name="title" translatable="yes">nepali.calendar</property>
+    <property name="title" translatable="yes">complete.nepali.calendar</property>
     <property name="resizable">False</property>
     <property name="type_hint">dock</property>
     <property name="skip_taskbar_hint">True</property>
@@ -14,7 +14,7 @@
     <property name="deletable">False</property>
     <property name="gravity">south-east</property>
     <child>
-      <object class="GtkBox" id="box">
+      <object class="GtkBox" id="container">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="margin_left">10</property>
@@ -23,16 +23,48 @@
         <property name="margin_bottom">10</property>
         <property name="orientation">vertical</property>
         <child>
-          <object class="GtkLabel" id="date">
+          <object class="GtkBox" id="compact">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">८</property>
-            <attributes>
-              <attribute name="font-desc" value="Arial 40"/>
-              <attribute name="weight" value="bold"/>
-              <attribute name="scale" value="1"/>
-              <attribute name="foreground" value="#fcfcafaf3e3e"/>
-            </attributes>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkLabel" id="compact.date">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">८</property>
+                <attributes>
+                  <attribute name="font-desc" value="Arial 40"/>
+                  <attribute name="weight" value="bold"/>
+                  <attribute name="scale" value="1"/>
+                  <attribute name="foreground" value="#fcfcafaf3e3e"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="compact.month">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="margin_top">7</property>
+                <property name="margin_bottom">7</property>
+                <property name="label" translatable="yes">२०७२ आषाढ</property>
+                <attributes>
+                  <attribute name="font-desc" value="Arial 14"/>
+                  <attribute name="weight" value="bold"/>
+                  <attribute name="scale" value="1"/>
+                  <attribute name="foreground" value="#eeeeeeeeecec"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -41,18 +73,2041 @@
           </packing>
         </child>
         <child>
-          <object class="GtkLabel" id="month">
+          <object class="GtkBox" id="complete">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="margin_top">7</property>
-            <property name="margin_bottom">7</property>
-            <property name="label" translatable="yes">२०७२ आषाढ</property>
-            <attributes>
-              <attribute name="font-desc" value="Arial 14"/>
-              <attribute name="weight" value="bold"/>
-              <attribute name="scale" value="1"/>
-              <attribute name="foreground" value="#eeeeeeeeecec"/>
-            </attributes>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkBox" id="complete.header">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="homogeneous">True</property>
+                <property name="baseline_position">top</property>
+                <child>
+                  <object class="GtkLabel" id="complete.month">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="xalign">0</property>
+                    <property name="xpad">15</property>
+                    <property name="label" translatable="yes">बैशाख</property>
+                    <property name="max_width_chars">0</property>
+                    <attributes>
+                      <attribute name="font-desc" value="&lt;Enter Value&gt; 15"/>
+                      <attribute name="weight" value="bold"/>
+                      <attribute name="foreground" value="#ffffffffffff"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="complete.year">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="xalign">1</property>
+                    <property name="xpad">15</property>
+                    <property name="label" translatable="yes">२०१५</property>
+                    <property name="max_width_chars">0</property>
+                    <attributes>
+                      <attribute name="font-desc" value="&lt;Enter Value&gt; 15"/>
+                      <attribute name="weight" value="bold"/>
+                      <attribute name="foreground" value="#ffffffffffff"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkGrid" id="complete.grid">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="margin_top">3</property>
+                <property name="margin_bottom">3</property>
+                <property name="row_spacing">3</property>
+                <property name="column_spacing">6</property>
+                <property name="row_homogeneous">True</property>
+                <property name="column_homogeneous">True</property>
+                <child>
+                  <object class="GtkLabel" id="complete.week1">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">आ</property>
+                    <property name="max_width_chars">0</property>
+                    <attributes>
+                      <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                      <attribute name="foreground" value="#fcfcafaf3e3e"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="complete.week2">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">सो</property>
+                    <attributes>
+                      <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                      <attribute name="foreground" value="#fcfcafaf3e3e"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="complete.week3">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">म</property>
+                    <attributes>
+                      <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                      <attribute name="foreground" value="#fcfcafaf3e3e"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="complete.week4">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">बु</property>
+                    <attributes>
+                      <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                      <attribute name="foreground" value="#fcfcafaf3e3e"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="left_attach">3</property>
+                    <property name="top_attach">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="complete.week5">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">बि</property>
+                    <attributes>
+                      <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                      <attribute name="foreground" value="#fcfcafaf3e3e"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="left_attach">4</property>
+                    <property name="top_attach">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="complete.week6">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">शु</property>
+                    <attributes>
+                      <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                      <attribute name="foreground" value="#fcfcafaf3e3e"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="left_attach">5</property>
+                    <property name="top_attach">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="complete.week7">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">स</property>
+                    <attributes>
+                      <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                      <attribute name="foreground" value="#fcfcafaf3e3e"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="left_attach">6</property>
+                    <property name="top_attach">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="complete.day14">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">end</property>
+                    <child>
+                      <object class="GtkLabel" id="complete.nep14">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.89999997615814209</property>
+                        <property name="ypad">10</property>
+                        <property name="label" translatable="yes">०१</property>
+                        <property name="justify">right</property>
+                        <property name="width_chars">3</property>
+                        <property name="track_visited_links">False</property>
+                        <attributes>
+                          <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="complete.eng14">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.10000000149011612</property>
+                        <property name="yalign">0.89999997615814209</property>
+                        <property name="ypad">2</property>
+                        <property name="label" translatable="yes">01</property>
+                        <property name="width_chars">2</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Arial 7"/>
+                          <attribute name="weight" value="light"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">6</property>
+                    <property name="top_attach">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="complete.day1">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">end</property>
+                    <child>
+                      <object class="GtkLabel" id="complete.nep1">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.89999997615814209</property>
+                        <property name="ypad">10</property>
+                        <property name="label" translatable="yes">०१</property>
+                        <property name="justify">right</property>
+                        <property name="width_chars">3</property>
+                        <property name="track_visited_links">False</property>
+                        <attributes>
+                          <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="complete.eng1">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.10000000149011612</property>
+                        <property name="yalign">0.89999997615814209</property>
+                        <property name="ypad">2</property>
+                        <property name="label" translatable="yes">01</property>
+                        <property name="width_chars">2</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Arial 7"/>
+                          <attribute name="weight" value="light"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="complete.day2">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">end</property>
+                    <child>
+                      <object class="GtkLabel" id="complete.nep2">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.89999997615814209</property>
+                        <property name="ypad">10</property>
+                        <property name="label" translatable="yes">०१</property>
+                        <property name="justify">right</property>
+                        <property name="width_chars">3</property>
+                        <property name="track_visited_links">False</property>
+                        <attributes>
+                          <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="complete.eng2">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.10000000149011612</property>
+                        <property name="yalign">0.89999997615814209</property>
+                        <property name="ypad">2</property>
+                        <property name="label" translatable="yes">01</property>
+                        <property name="width_chars">2</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Arial 7"/>
+                          <attribute name="weight" value="light"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="complete.day3">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">end</property>
+                    <child>
+                      <object class="GtkLabel" id="complete.nep3">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.89999997615814209</property>
+                        <property name="ypad">10</property>
+                        <property name="label" translatable="yes">०१</property>
+                        <property name="justify">right</property>
+                        <property name="width_chars">3</property>
+                        <property name="track_visited_links">False</property>
+                        <attributes>
+                          <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="complete.eng3">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.10000000149011612</property>
+                        <property name="yalign">0.89999997615814209</property>
+                        <property name="ypad">2</property>
+                        <property name="label" translatable="yes">01</property>
+                        <property name="width_chars">2</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Arial 7"/>
+                          <attribute name="weight" value="light"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="complete.day4">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">end</property>
+                    <child>
+                      <object class="GtkLabel" id="complete.nep4">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.89999997615814209</property>
+                        <property name="ypad">10</property>
+                        <property name="label" translatable="yes">०१</property>
+                        <property name="justify">right</property>
+                        <property name="width_chars">3</property>
+                        <property name="track_visited_links">False</property>
+                        <attributes>
+                          <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="complete.eng4">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.10000000149011612</property>
+                        <property name="yalign">0.89999997615814209</property>
+                        <property name="ypad">2</property>
+                        <property name="label" translatable="yes">01</property>
+                        <property name="width_chars">2</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Arial 7"/>
+                          <attribute name="weight" value="light"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">3</property>
+                    <property name="top_attach">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="complete.day5">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">end</property>
+                    <child>
+                      <object class="GtkLabel" id="complete.nep5">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.89999997615814209</property>
+                        <property name="ypad">10</property>
+                        <property name="label" translatable="yes">०१</property>
+                        <property name="justify">right</property>
+                        <property name="width_chars">3</property>
+                        <property name="track_visited_links">False</property>
+                        <attributes>
+                          <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="complete.eng5">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.10000000149011612</property>
+                        <property name="yalign">0.89999997615814209</property>
+                        <property name="ypad">2</property>
+                        <property name="label" translatable="yes">01</property>
+                        <property name="width_chars">2</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Arial 7"/>
+                          <attribute name="weight" value="light"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">4</property>
+                    <property name="top_attach">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="complete.day6">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">end</property>
+                    <child>
+                      <object class="GtkLabel" id="complete.nep6">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.89999997615814209</property>
+                        <property name="ypad">10</property>
+                        <property name="label" translatable="yes">०१</property>
+                        <property name="justify">right</property>
+                        <property name="width_chars">3</property>
+                        <property name="track_visited_links">False</property>
+                        <attributes>
+                          <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="complete.eng6">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.10000000149011612</property>
+                        <property name="yalign">0.89999997615814209</property>
+                        <property name="ypad">2</property>
+                        <property name="label" translatable="yes">01</property>
+                        <property name="width_chars">2</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Arial 7"/>
+                          <attribute name="weight" value="light"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">5</property>
+                    <property name="top_attach">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="complete.day7">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">end</property>
+                    <child>
+                      <object class="GtkLabel" id="complete.nep7">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.89999997615814209</property>
+                        <property name="ypad">10</property>
+                        <property name="label" translatable="yes">०१</property>
+                        <property name="justify">right</property>
+                        <property name="width_chars">3</property>
+                        <property name="track_visited_links">False</property>
+                        <attributes>
+                          <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="complete.eng7">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.10000000149011612</property>
+                        <property name="yalign">0.89999997615814209</property>
+                        <property name="ypad">2</property>
+                        <property name="label" translatable="yes">01</property>
+                        <property name="width_chars">2</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Arial 7"/>
+                          <attribute name="weight" value="light"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">6</property>
+                    <property name="top_attach">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="complete.day8">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">end</property>
+                    <child>
+                      <object class="GtkLabel" id="complete.nep8">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.89999997615814209</property>
+                        <property name="ypad">10</property>
+                        <property name="label" translatable="yes">०१</property>
+                        <property name="justify">right</property>
+                        <property name="width_chars">3</property>
+                        <property name="track_visited_links">False</property>
+                        <attributes>
+                          <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="complete.eng8">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.10000000149011612</property>
+                        <property name="yalign">0.89999997615814209</property>
+                        <property name="ypad">2</property>
+                        <property name="label" translatable="yes">01</property>
+                        <property name="width_chars">2</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Arial 7"/>
+                          <attribute name="weight" value="light"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="complete.day9">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">end</property>
+                    <child>
+                      <object class="GtkLabel" id="complete.nep9">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.89999997615814209</property>
+                        <property name="ypad">10</property>
+                        <property name="label" translatable="yes">०१</property>
+                        <property name="justify">right</property>
+                        <property name="width_chars">3</property>
+                        <property name="track_visited_links">False</property>
+                        <attributes>
+                          <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="complete.eng9">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.10000000149011612</property>
+                        <property name="yalign">0.89999997615814209</property>
+                        <property name="ypad">2</property>
+                        <property name="label" translatable="yes">01</property>
+                        <property name="width_chars">2</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Arial 7"/>
+                          <attribute name="weight" value="light"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="complete.day10">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">end</property>
+                    <child>
+                      <object class="GtkLabel" id="complete.nep10">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.89999997615814209</property>
+                        <property name="ypad">10</property>
+                        <property name="label" translatable="yes">०१</property>
+                        <property name="justify">right</property>
+                        <property name="width_chars">3</property>
+                        <property name="track_visited_links">False</property>
+                        <attributes>
+                          <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="complete.eng10">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.10000000149011612</property>
+                        <property name="yalign">0.89999997615814209</property>
+                        <property name="ypad">2</property>
+                        <property name="label" translatable="yes">01</property>
+                        <property name="width_chars">2</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Arial 7"/>
+                          <attribute name="weight" value="light"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="complete.day11">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">end</property>
+                    <child>
+                      <object class="GtkLabel" id="complete.nep11">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.89999997615814209</property>
+                        <property name="ypad">10</property>
+                        <property name="label" translatable="yes">०१</property>
+                        <property name="justify">right</property>
+                        <property name="width_chars">3</property>
+                        <property name="track_visited_links">False</property>
+                        <attributes>
+                          <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="complete.eng11">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.10000000149011612</property>
+                        <property name="yalign">0.89999997615814209</property>
+                        <property name="ypad">2</property>
+                        <property name="label" translatable="yes">01</property>
+                        <property name="width_chars">2</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Arial 7"/>
+                          <attribute name="weight" value="light"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">3</property>
+                    <property name="top_attach">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="complete.day12">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">end</property>
+                    <child>
+                      <object class="GtkLabel" id="complete.nep12">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.89999997615814209</property>
+                        <property name="ypad">10</property>
+                        <property name="label" translatable="yes">०१</property>
+                        <property name="justify">right</property>
+                        <property name="width_chars">3</property>
+                        <property name="track_visited_links">False</property>
+                        <attributes>
+                          <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="complete.eng12">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.10000000149011612</property>
+                        <property name="yalign">0.89999997615814209</property>
+                        <property name="ypad">2</property>
+                        <property name="label" translatable="yes">01</property>
+                        <property name="width_chars">2</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Arial 7"/>
+                          <attribute name="weight" value="light"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">4</property>
+                    <property name="top_attach">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="complete.day13">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">end</property>
+                    <child>
+                      <object class="GtkLabel" id="complete.nep13">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.89999997615814209</property>
+                        <property name="ypad">10</property>
+                        <property name="label" translatable="yes">०१</property>
+                        <property name="justify">right</property>
+                        <property name="width_chars">3</property>
+                        <property name="track_visited_links">False</property>
+                        <attributes>
+                          <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="complete.eng13">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.10000000149011612</property>
+                        <property name="yalign">0.89999997615814209</property>
+                        <property name="ypad">2</property>
+                        <property name="label" translatable="yes">01</property>
+                        <property name="width_chars">2</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Arial 7"/>
+                          <attribute name="weight" value="light"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">5</property>
+                    <property name="top_attach">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="complete.day15">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">end</property>
+                    <child>
+                      <object class="GtkLabel" id="complete.nep15">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.89999997615814209</property>
+                        <property name="ypad">10</property>
+                        <property name="label" translatable="yes">०१</property>
+                        <property name="justify">right</property>
+                        <property name="width_chars">3</property>
+                        <property name="track_visited_links">False</property>
+                        <attributes>
+                          <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="complete.eng15">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.10000000149011612</property>
+                        <property name="yalign">0.89999997615814209</property>
+                        <property name="ypad">2</property>
+                        <property name="label" translatable="yes">01</property>
+                        <property name="width_chars">2</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Arial 7"/>
+                          <attribute name="weight" value="light"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">3</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="complete.day16">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">end</property>
+                    <child>
+                      <object class="GtkLabel" id="complete.nep16">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.89999997615814209</property>
+                        <property name="ypad">10</property>
+                        <property name="label" translatable="yes">०१</property>
+                        <property name="justify">right</property>
+                        <property name="width_chars">3</property>
+                        <property name="track_visited_links">False</property>
+                        <attributes>
+                          <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="complete.eng16">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.10000000149011612</property>
+                        <property name="yalign">0.89999997615814209</property>
+                        <property name="ypad">2</property>
+                        <property name="label" translatable="yes">01</property>
+                        <property name="width_chars">2</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Arial 7"/>
+                          <attribute name="weight" value="light"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">3</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="complete.day17">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">end</property>
+                    <child>
+                      <object class="GtkLabel" id="complete.nep17">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.89999997615814209</property>
+                        <property name="ypad">10</property>
+                        <property name="label" translatable="yes">०१</property>
+                        <property name="justify">right</property>
+                        <property name="width_chars">3</property>
+                        <property name="track_visited_links">False</property>
+                        <attributes>
+                          <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="complete.eng17">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.10000000149011612</property>
+                        <property name="yalign">0.89999997615814209</property>
+                        <property name="ypad">2</property>
+                        <property name="label" translatable="yes">01</property>
+                        <property name="width_chars">2</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Arial 7"/>
+                          <attribute name="weight" value="light"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">3</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="complete.day18">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">end</property>
+                    <child>
+                      <object class="GtkLabel" id="complete.nep18">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.89999997615814209</property>
+                        <property name="ypad">10</property>
+                        <property name="label" translatable="yes">०१</property>
+                        <property name="justify">right</property>
+                        <property name="width_chars">3</property>
+                        <property name="track_visited_links">False</property>
+                        <attributes>
+                          <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="complete.eng18">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.10000000149011612</property>
+                        <property name="yalign">0.89999997615814209</property>
+                        <property name="ypad">2</property>
+                        <property name="label" translatable="yes">01</property>
+                        <property name="width_chars">2</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Arial 7"/>
+                          <attribute name="weight" value="light"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">3</property>
+                    <property name="top_attach">3</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="complete.day19">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">end</property>
+                    <child>
+                      <object class="GtkLabel" id="complete.nep19">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.89999997615814209</property>
+                        <property name="ypad">10</property>
+                        <property name="label" translatable="yes">०१</property>
+                        <property name="justify">right</property>
+                        <property name="width_chars">3</property>
+                        <property name="track_visited_links">False</property>
+                        <attributes>
+                          <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="complete.eng19">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.10000000149011612</property>
+                        <property name="yalign">0.89999997615814209</property>
+                        <property name="ypad">2</property>
+                        <property name="label" translatable="yes">01</property>
+                        <property name="width_chars">2</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Arial 7"/>
+                          <attribute name="weight" value="light"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">4</property>
+                    <property name="top_attach">3</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="complete.day20">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">end</property>
+                    <child>
+                      <object class="GtkLabel" id="complete.nep20">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.89999997615814209</property>
+                        <property name="ypad">10</property>
+                        <property name="label" translatable="yes">०१</property>
+                        <property name="justify">right</property>
+                        <property name="width_chars">3</property>
+                        <property name="track_visited_links">False</property>
+                        <attributes>
+                          <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="complete.eng20">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.10000000149011612</property>
+                        <property name="yalign">0.89999997615814209</property>
+                        <property name="ypad">2</property>
+                        <property name="label" translatable="yes">01</property>
+                        <property name="width_chars">2</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Arial 7"/>
+                          <attribute name="weight" value="light"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">5</property>
+                    <property name="top_attach">3</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="complete.day21">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">end</property>
+                    <child>
+                      <object class="GtkLabel" id="complete.nep21">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.89999997615814209</property>
+                        <property name="ypad">10</property>
+                        <property name="label" translatable="yes">०१</property>
+                        <property name="justify">right</property>
+                        <property name="width_chars">3</property>
+                        <property name="track_visited_links">False</property>
+                        <attributes>
+                          <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="complete.eng21">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.10000000149011612</property>
+                        <property name="yalign">0.89999997615814209</property>
+                        <property name="ypad">2</property>
+                        <property name="label" translatable="yes">01</property>
+                        <property name="width_chars">2</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Arial 7"/>
+                          <attribute name="weight" value="light"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">6</property>
+                    <property name="top_attach">3</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="complete.day22">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">end</property>
+                    <child>
+                      <object class="GtkLabel" id="complete.nep22">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.89999997615814209</property>
+                        <property name="ypad">10</property>
+                        <property name="label" translatable="yes">०१</property>
+                        <property name="justify">right</property>
+                        <property name="width_chars">3</property>
+                        <property name="track_visited_links">False</property>
+                        <attributes>
+                          <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="complete.eng22">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.10000000149011612</property>
+                        <property name="yalign">0.89999997615814209</property>
+                        <property name="ypad">2</property>
+                        <property name="label" translatable="yes">01</property>
+                        <property name="width_chars">2</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Arial 7"/>
+                          <attribute name="weight" value="light"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">4</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="complete.day23">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">end</property>
+                    <child>
+                      <object class="GtkLabel" id="complete.nep23">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.89999997615814209</property>
+                        <property name="ypad">10</property>
+                        <property name="label" translatable="yes">०१</property>
+                        <property name="justify">right</property>
+                        <property name="width_chars">3</property>
+                        <property name="track_visited_links">False</property>
+                        <attributes>
+                          <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="complete.eng23">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.10000000149011612</property>
+                        <property name="yalign">0.89999997615814209</property>
+                        <property name="ypad">2</property>
+                        <property name="label" translatable="yes">01</property>
+                        <property name="width_chars">2</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Arial 7"/>
+                          <attribute name="weight" value="light"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">4</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="complete.day24">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">end</property>
+                    <child>
+                      <object class="GtkLabel" id="complete.nep24">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.89999997615814209</property>
+                        <property name="ypad">10</property>
+                        <property name="label" translatable="yes">०१</property>
+                        <property name="justify">right</property>
+                        <property name="width_chars">3</property>
+                        <property name="track_visited_links">False</property>
+                        <attributes>
+                          <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="complete.eng24">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.10000000149011612</property>
+                        <property name="yalign">0.89999997615814209</property>
+                        <property name="ypad">2</property>
+                        <property name="label" translatable="yes">01</property>
+                        <property name="width_chars">2</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Arial 7"/>
+                          <attribute name="weight" value="light"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">4</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="complete.day25">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">end</property>
+                    <child>
+                      <object class="GtkLabel" id="complete.nep25">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.89999997615814209</property>
+                        <property name="ypad">10</property>
+                        <property name="label" translatable="yes">०१</property>
+                        <property name="justify">right</property>
+                        <property name="width_chars">3</property>
+                        <property name="track_visited_links">False</property>
+                        <attributes>
+                          <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="complete.eng25">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.10000000149011612</property>
+                        <property name="yalign">0.89999997615814209</property>
+                        <property name="ypad">2</property>
+                        <property name="label" translatable="yes">01</property>
+                        <property name="width_chars">2</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Arial 7"/>
+                          <attribute name="weight" value="light"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">3</property>
+                    <property name="top_attach">4</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="complete.day26">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">end</property>
+                    <child>
+                      <object class="GtkLabel" id="complete.nep26">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.89999997615814209</property>
+                        <property name="ypad">10</property>
+                        <property name="label" translatable="yes">०१</property>
+                        <property name="justify">right</property>
+                        <property name="width_chars">3</property>
+                        <property name="track_visited_links">False</property>
+                        <attributes>
+                          <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="complete.eng26">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.10000000149011612</property>
+                        <property name="yalign">0.89999997615814209</property>
+                        <property name="ypad">2</property>
+                        <property name="label" translatable="yes">01</property>
+                        <property name="width_chars">2</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Arial 7"/>
+                          <attribute name="weight" value="light"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">4</property>
+                    <property name="top_attach">4</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="complete.day27">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">end</property>
+                    <child>
+                      <object class="GtkLabel" id="complete.nep27">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.89999997615814209</property>
+                        <property name="ypad">10</property>
+                        <property name="label" translatable="yes">०१</property>
+                        <property name="justify">right</property>
+                        <property name="width_chars">3</property>
+                        <property name="track_visited_links">False</property>
+                        <attributes>
+                          <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="complete.eng27">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.10000000149011612</property>
+                        <property name="yalign">0.89999997615814209</property>
+                        <property name="ypad">2</property>
+                        <property name="label" translatable="yes">01</property>
+                        <property name="width_chars">2</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Arial 7"/>
+                          <attribute name="weight" value="light"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">5</property>
+                    <property name="top_attach">4</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="complete.day28">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">end</property>
+                    <child>
+                      <object class="GtkLabel" id="complete.nep28">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.89999997615814209</property>
+                        <property name="ypad">10</property>
+                        <property name="label" translatable="yes">०१</property>
+                        <property name="justify">right</property>
+                        <property name="width_chars">3</property>
+                        <property name="track_visited_links">False</property>
+                        <attributes>
+                          <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="complete.eng28">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.10000000149011612</property>
+                        <property name="yalign">0.89999997615814209</property>
+                        <property name="ypad">2</property>
+                        <property name="label" translatable="yes">01</property>
+                        <property name="width_chars">2</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Arial 7"/>
+                          <attribute name="weight" value="light"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">6</property>
+                    <property name="top_attach">4</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="complete.day29">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">end</property>
+                    <child>
+                      <object class="GtkLabel" id="complete.nep29">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.89999997615814209</property>
+                        <property name="ypad">10</property>
+                        <property name="label" translatable="yes">०१</property>
+                        <property name="justify">right</property>
+                        <property name="width_chars">3</property>
+                        <property name="track_visited_links">False</property>
+                        <attributes>
+                          <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="complete.eng29">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.10000000149011612</property>
+                        <property name="yalign">0.89999997615814209</property>
+                        <property name="ypad">2</property>
+                        <property name="label" translatable="yes">01</property>
+                        <property name="width_chars">2</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Arial 7"/>
+                          <attribute name="weight" value="light"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">5</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="complete.day30">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">end</property>
+                    <child>
+                      <object class="GtkLabel" id="complete.nep30">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.89999997615814209</property>
+                        <property name="ypad">10</property>
+                        <property name="label" translatable="yes">०१</property>
+                        <property name="justify">right</property>
+                        <property name="width_chars">3</property>
+                        <property name="track_visited_links">False</property>
+                        <attributes>
+                          <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="complete.eng30">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.10000000149011612</property>
+                        <property name="yalign">0.89999997615814209</property>
+                        <property name="ypad">2</property>
+                        <property name="label" translatable="yes">01</property>
+                        <property name="width_chars">2</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Arial 7"/>
+                          <attribute name="weight" value="light"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">5</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="complete.day31">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">end</property>
+                    <child>
+                      <object class="GtkLabel" id="complete.nep31">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.89999997615814209</property>
+                        <property name="ypad">10</property>
+                        <property name="label" translatable="yes">०१</property>
+                        <property name="justify">right</property>
+                        <property name="width_chars">3</property>
+                        <property name="track_visited_links">False</property>
+                        <attributes>
+                          <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="complete.eng31">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.10000000149011612</property>
+                        <property name="yalign">0.89999997615814209</property>
+                        <property name="ypad">2</property>
+                        <property name="label" translatable="yes">01</property>
+                        <property name="width_chars">2</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Arial 7"/>
+                          <attribute name="weight" value="light"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">5</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="complete.day32">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">end</property>
+                    <child>
+                      <object class="GtkLabel" id="complete.nep32">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.89999997615814209</property>
+                        <property name="ypad">10</property>
+                        <property name="label" translatable="yes">०१</property>
+                        <property name="justify">right</property>
+                        <property name="width_chars">3</property>
+                        <property name="track_visited_links">False</property>
+                        <attributes>
+                          <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="complete.eng32">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.10000000149011612</property>
+                        <property name="yalign">0.89999997615814209</property>
+                        <property name="ypad">2</property>
+                        <property name="label" translatable="yes">01</property>
+                        <property name="width_chars">2</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Arial 7"/>
+                          <attribute name="weight" value="light"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">3</property>
+                    <property name="top_attach">5</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="complete.day33">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">end</property>
+                    <child>
+                      <object class="GtkLabel" id="complete.nep33">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.89999997615814209</property>
+                        <property name="ypad">10</property>
+                        <property name="label" translatable="yes">०१</property>
+                        <property name="justify">right</property>
+                        <property name="width_chars">3</property>
+                        <property name="track_visited_links">False</property>
+                        <attributes>
+                          <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="complete.eng33">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.10000000149011612</property>
+                        <property name="yalign">0.89999997615814209</property>
+                        <property name="ypad">2</property>
+                        <property name="label" translatable="yes">01</property>
+                        <property name="width_chars">2</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Arial 7"/>
+                          <attribute name="weight" value="light"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">4</property>
+                    <property name="top_attach">5</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="complete.day34">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">end</property>
+                    <child>
+                      <object class="GtkLabel" id="complete.nep34">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.89999997615814209</property>
+                        <property name="ypad">10</property>
+                        <property name="label" translatable="yes">०१</property>
+                        <property name="justify">right</property>
+                        <property name="width_chars">3</property>
+                        <property name="track_visited_links">False</property>
+                        <attributes>
+                          <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="complete.eng34">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.10000000149011612</property>
+                        <property name="yalign">0.89999997615814209</property>
+                        <property name="ypad">2</property>
+                        <property name="label" translatable="yes">01</property>
+                        <property name="width_chars">2</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Arial 7"/>
+                          <attribute name="weight" value="light"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">5</property>
+                    <property name="top_attach">5</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="complete.day35">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">end</property>
+                    <child>
+                      <object class="GtkLabel" id="complete.nep35">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.89999997615814209</property>
+                        <property name="ypad">10</property>
+                        <property name="label" translatable="yes">०१</property>
+                        <property name="justify">right</property>
+                        <property name="width_chars">3</property>
+                        <property name="track_visited_links">False</property>
+                        <attributes>
+                          <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="complete.eng35">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0.10000000149011612</property>
+                        <property name="yalign">0.89999997615814209</property>
+                        <property name="ypad">2</property>
+                        <property name="label" translatable="yes">01</property>
+                        <property name="width_chars">2</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Arial 7"/>
+                          <attribute name="weight" value="light"/>
+                          <attribute name="foreground" value="#ffffffffffff"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">6</property>
+                    <property name="top_attach">5</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
           </object>
           <packing>
             <property name="expand">False</property>

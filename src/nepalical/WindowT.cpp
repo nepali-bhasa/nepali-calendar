@@ -10,14 +10,16 @@
 WindowT::WindowT(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refGlade) :
     Gtk::Window(cobject),
     m_builder(refGlade),
-    m_box(NULL),
-    m_labelDate(NULL),
-    m_labelMonth(NULL),
-    m_supportsAlpha(false) {
+    m_compact(NULL),
+    m_complete(NULL),
+    m_supportsAlpha(false),
+    m_completeShow(false)
+{
+
     // Widgets
-    m_builder->get_widget("box", m_box);
-    m_builder->get_widget("date", m_labelDate);
-    m_builder->get_widget("month", m_labelMonth);
+    m_builder->get_widget("compact", m_compact);
+    m_builder->get_widget("complete", m_complete);
+    m_complete->hide();
 
     // Set up the top-level window.
     add_events(Gdk::BUTTON_PRESS_MASK);
@@ -39,8 +41,9 @@ WindowT::WindowT(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refG
     move_to_bottomright(30);
     // Check for screen check
     on_screen_changed(get_screen());
+
     // Show the window and all its children.
-    show_all();
+    //show_all();
 }
 
 /**
@@ -55,8 +58,66 @@ WindowT::~WindowT() {
  */
 bool WindowT::updateToday() {
     Bs bs;
+    Ad ad = bs.firstday();
+    // get week of first date
+    int j=ad.week()-1;
+
+    // Compact
+    Gtk::Label* m_labelDate = NULL;
+    Gtk::Label* m_labelMix = NULL;
+    m_builder->get_widget("compact.date", m_labelDate);
+    m_builder->get_widget("compact.month", m_labelMix);
     m_labelDate->set_text(anka(bs.day(),UNI));
-    m_labelMonth->set_text(anka(bs.year(),UNI)+" "+mahina(bs.month(),UNI));
+    m_labelMix->set_text(anka(bs.year(),UNI)+" "+mahina(bs.month(),UNI));
+
+    // Complete
+    Gtk::Label* m_labelYear = NULL;
+    Gtk::Label* m_labelMonth = NULL;
+    m_builder->get_widget("complete.year", m_labelYear);
+    m_builder->get_widget("complete.month", m_labelMonth);
+    m_labelYear->set_text(anka(bs.year(),UNI));
+    m_labelMonth->set_text(mahina(bs.month(),UNI));
+
+    Gtk::Label* m_labelNep= NULL;
+    Gtk::Label* m_labelEng= NULL;
+
+    for(int i=1;i<=j;i++){
+        m_builder->get_widget("complete.nep"+std::to_string(i), m_labelNep);
+        m_builder->get_widget("complete.eng"+std::to_string(i), m_labelEng);
+        m_labelNep->set_text("");
+        m_labelEng->set_text("");
+            m_labelNep->unset_background_color(Gtk::STATE_FLAG_NORMAL);
+            m_labelEng->unset_background_color(Gtk::STATE_FLAG_NORMAL);
+    }
+
+
+    for(int i=1, k=ad.day();i<=bs.daysInMonth();i++,k++){
+        m_builder->get_widget("complete.nep"+std::to_string(j+i), m_labelNep);
+        m_builder->get_widget("complete.eng"+std::to_string(j+i), m_labelEng);
+
+
+        if(i==bs.day()){
+            m_labelNep->override_background_color(Gdk::RGBA("#fcfcafaf3e3e"), Gtk::STATE_FLAG_NORMAL);
+            m_labelEng->override_background_color(Gdk::RGBA("#fcfcafaf3e3e"), Gtk::STATE_FLAG_NORMAL);
+        } else {
+            m_labelNep->unset_background_color(Gtk::STATE_FLAG_NORMAL);
+            m_labelEng->unset_background_color(Gtk::STATE_FLAG_NORMAL);
+        }
+        m_labelNep->set_text(anka(i,UNI));
+
+        if(k>ad.daysInMonth())
+            k = 1;
+        m_labelEng->set_text(std::to_string(k));
+    }
+
+    for(int i=bs.daysInMonth()+j+1;i<=35;i++){
+        m_builder->get_widget("complete.nep"+std::to_string(i), m_labelNep);
+        m_builder->get_widget("complete.eng"+std::to_string(i), m_labelEng);
+        m_labelNep->set_text("");
+        m_labelEng->set_text("");
+            m_labelNep->unset_background_color(Gtk::STATE_FLAG_NORMAL);
+            m_labelEng->unset_background_color(Gtk::STATE_FLAG_NORMAL);
+    }
 
     return true;
 }
@@ -109,7 +170,15 @@ bool WindowT::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
 }
 
 bool WindowT::on_window_clicked(GdkEventButton* event) {
-    std::cout << "The window was pressed." << std::endl;
+    if (m_completeShow){
+        m_complete->hide();
+        m_compact->show();
+        m_completeShow = false;
+    } else {
+        m_compact->hide();
+        m_complete->show();
+        m_completeShow = true;
+    }
     return false;
 }
 

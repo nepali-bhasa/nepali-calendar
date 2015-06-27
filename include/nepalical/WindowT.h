@@ -29,13 +29,14 @@ protected:
 
     // Member widgets:
     Glib::RefPtr<Gtk::Builder> m_builder;
-    Gtk::Box* m_box;
-    Gtk::Label* m_labelDate;
-    Gtk::Label* m_labelMonth;
+
+    Gtk::Box* m_complete;
+    Gtk::Box* m_compact;
     // Gtk::Button _button;
 
 private:
     bool m_supportsAlpha;
+    bool m_completeShow;
 };
 
 #endif /* TRANSPARENT_H_ */
