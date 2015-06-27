@@ -1,142 +1,145 @@
 #include "nepalical/Date.h"
 
-Ymd Date::addition(int no) const {
-
-    if(no < 0) {
-        return difference(-no);
-    } else if(no == 0) {
-        return this->daet;
-    }
-
-    suint y = daet.year(), m = daet.month(), d = daet.day();
-    int n = 0;
-
-    for(int i=m+1; i<=12; ++i)
-        n += data->get(y,i);
-
-    n += data->get(y,m) - d + 1;
-
-
-    if(n <= no && data->get(y,13) != -1) {
-        ++y;
-        while(n+data->get(y,13) <= no && data->get(y,13) != -1 ) {
-            n+=data->get(y,13);
-            ++y;
-        }
-        m=1;
-
-        if(data->get(y,13) == -1) {
-            std::cout << "Out of Bounds in addition()" << std::endl;
-            //throw OutOfBound();
-            return this->daet;
-        }
-
-        while(n+data->get(y,m) <= no && m<12 ) {
-            n+=data->get(y,m);
-            ++m;
-        }
-        d=1;
-        d += no-n;
-
-    } else {
-        n = data->get(y,m)-d+1;
-        if (n < no) {
-            ++m;
-            while(n+data->get(y,m) <= no) {
-                n+=data->get(y,m);
-                ++m;
-            }
-            d = no-n+1;
-        } else {
-            d += no;
-        }
-    }
-    return Ymd(y,m,d);
-}
-
-Ymd Date::difference(int no) const {
-
-    if(no < 0) {
-        return addition(-no);
-    } else if (no == 0) {
-        return this->daet;
-    }
-
-    suint y = daet.year(), m = daet.month(), d = daet.day();
-    int n = 0;
-
-    for(int i=m-1; i>=1; --i)
-        n += data->get(y,i);
-
-    n += d;
-
-    if(n <= no ) {
-
-        --y;
-        while(n+data->get(y,13) <= no && data->get(y,13) != -1 ) {
-            n+=data->get(y,13);
-            --y;
-        }
-        m=12;
-
-        if(data->get(y,13) == -1) {
-            std::cout << "Out of Bounds in subtraction()" << std::endl;
-            //throw OutOfBound();
-            return this->daet;
-        }
-
-        while(n+data->get(y,m) <= no && m>1 ) {
-            n+=data->get(y,m);
-            --m;
-        }
-
-        d = data->get(y,m) -(no-n);
-
-    } else {
-        n = d;
-        if (n <= no) {
-            --m;
-            while(n+data->get(y,m) <= no) {
-                n+=data->get(y,m);
-                --m;
-            }
-            d = data->get(y,m) -(no-n);
-        } else {
-            d = d - no;
-        }
-    }
-    return Ymd(y,m,d);
-}
-
-
 void Date::checkBounds() {
-    if( daet > data->max() )
-        daet=data->max();
-    else if( daet < data->min() )
-        daet=data->min();
+    if ( daet > data->max() )
+        daet = data->max();
+    else if ( daet < data->min() )
+        daet = data->min();
 }
 
-// TODO what have I done here?
 void Date::validate() {
     suint y = daet.year(), m = daet.month(), d = daet.day();
 
-    try {
-        if(m > 12)
-            throw MonthExceeded();
-        else if(d > data->get(y,m))
-            throw DayExceeded();
-    } catch ( MonthExceeded& e) {
-        m  = 12;
-    } catch ( DayExceeded& e) {
-        d = data->get(y,m);
-    }
-    daet = Ymd(y,m,d);
+    if (m > 12)
+        throw MonthExceeded();
+    else if (d > data->get(y, m))
+        throw DayExceeded();
 }
 
-int Date::difference(const Ymd& sub) const {
+Ymd Date::addition(int no) const {
 
-    suint y,m,d,y1,m1,d1;
-    int sign;
+    if (no == 0)
+        return this->daet;
+    else if (no < 0)
+        return difference(-no);
+
+    suint y = daet.year();
+    suint m = daet.month();
+    suint d = daet.day();
+
+    // Get number of days 'n' till end of year
+    int n = data->get(y, m) - d + 1;
+    for (int i = m + 1; i <= 12; ++i)
+        n += data->get(y, i);
+
+    // If 'no' exceeds current year
+    if (n <= no) {
+
+        // Get year
+        ++y;
+        while (n + data->get(y) <= no) {
+            n += data->get(y);
+            ++y;
+        }
+        // Get month
+        m = 1;
+        while (n + data->get(y, m) <= no && m < 12 ) {
+            n += data->get(y, m);
+            ++m;
+        }
+        // Get day
+        d = 1;
+        d += no - n;
+
+    } else {
+
+        // Get number of days 'n' till end of month
+        n = data->get(y, m) - d + 1;
+
+        // If 'no' exceeds current month
+        if (n < no) {
+            // Get month
+            ++m;
+            while (n + data->get(y, m) <= no) {
+                n += data->get(y, m);
+                ++m;
+            }
+            // Get day
+            d = no - n + 1;
+        } else {
+            // Get day
+            d += no;
+        }
+    }
+    return Ymd(y, m, d);
+}
+
+
+
+Ymd Date::difference(int no) const {
+
+    if (no == 0)
+        return this->daet;
+    else if (no < 0)
+        return addition(-no);
+
+    suint y = daet.year();
+    suint m = daet.month();
+    suint d = daet.day();
+
+    // Get number of days 'n' till beginning of year
+    int n = d;
+    for (int i = m - 1; i >= 1; --i)
+        n += data->get(y, i);
+
+    // If 'no' exceeds current year
+    if (n <= no ) {
+
+        // Get year
+        --y;
+        while (n + data->get(y) <= no) {
+            n += data->get(y);
+            --y;
+        }
+        // Get month
+        m = 12;
+        while (n + data->get(y, m) <= no && m > 1) {
+            n += data->get(y, m);
+            --m;
+        }
+        // Get date
+        d = data->get(y, m) - (no - n);
+
+    } else {
+
+        // Get number of days 'n' till beginning of month
+        n = d;
+
+        // If 'no' exceeds current month
+        if (n <= no) {
+            // Get month
+            --m;
+            while (n + data->get(y, m) <= no) {
+                n += data->get(y, m);
+                --m;
+            }
+            // Get date
+            d = data->get(y, m) - (no - n);
+        } else {
+            // Get date
+            d = d - no;
+        }
+
+    }
+    return Ymd(y, m, d);
+}
+
+int Date::difference(const Ymd & sub) const {
+
+    int sign = 1;
+    suint y, m, d;
+    suint y1, m1, d1;
+
     if (daet > sub) {
         y = daet.year(), m = daet.month(), d = daet.day();
         y1 = sub.year(), m1 = sub.month(), d1 = sub.day();
@@ -147,42 +150,49 @@ int Date::difference(const Ymd& sub) const {
         sign = -1;
     }
 
-    if (data->get(y,13) == -1)
-        return 0;
-    if (data->get(y1,13) == -1)
-        return 0;
 
     int no = 0;
+    // If the years differ
+    if (y != y1) {
 
-    if(y != y1) {
+        // Get number of days 'no' till end of year
+        no = data->get(y1, m1) - d1 + 1;
+        for (int i = (m1 + 1); i <= 12; ++i)
+            no += data->get(y1, i);
 
-        for (int i=(m1+1); i<=12; ++i)
-            no += data->get(y1,i);
+        // Get number of days till the required year
+        for (int i = y1 + 1; i < y; i++)
+            no += data->get(i);
 
-        no += data->get(y1,m1) - d1 + 1;
+        // Get number of days till the required month
+        for (int i = 1; i < m; ++i)
+            no += data->get(y, i);
 
-        for(int i=y1+1; i<y; i++)
-            no += data->get(i,13);
-
-        for (int i=1; i<m; ++i)
-            no += data->get(y,i);
-
+        // Get number of days till the required date
         no += d;
         no--;
 
-    } else if (m!=m1) {
+    }
+    // If the months differ
+    else if (m != m1) {
 
-        no += data->get(y,m1) - d1 + 1 ;
-        for (int i=m1+1; i<m; ++i)
-            no += data->get(y,i);
+        // Get number of days 'no' till end of month
+        no = data->get(y, m1) - d1 + 1 ;
+
+        // Get number of days till the required month
+        for (int i = m1 + 1; i < m; ++i)
+            no += data->get(y, i);
+
+        // Get number of days till the required date
         no += d;
         no--;
 
     } else {
-        no = d-d1;
+
+        // Get number of days till the required date
+        no = d - d1;
+
     }
 
-    return sign*no;
+    return sign * no;
 }
-
-

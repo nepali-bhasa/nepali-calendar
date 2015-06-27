@@ -17,7 +17,7 @@ public:
     int operator-(const Bs& b) const;
     Bs operator-(int no) const;
     Bs operator+(int no) const ;
-private:
+public:
     Ad firstday() const; // ENGLISH FIRST DAY OF THE MONTH
 };
 

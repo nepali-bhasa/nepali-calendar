@@ -9,17 +9,23 @@ private:
     static const Ymd minimum,maximum;
 public:
     int get(suint y, suint m) const;
+    int get(suint y) const;
     const Ymd& min() const;
     const Ymd& max() const;
 };
 
+
+inline int BsData::get(suint y) const {
+    get(y,13);
+}
+
 inline int BsData::get(suint y,suint m) const {
     if (m > 12+1 || m == 0 )
-        return -1;
-        //throw OutOfBound();
+        throw OutOfBound();
+        // return -1;
     if (y < minimum.year() || y > maximum.year() )
-        return -1;
-        //throw OutOfBound();
+        throw OutOfBound();
+        //return -1;
     return data[y - minimum.year()][m-1];
 }
 

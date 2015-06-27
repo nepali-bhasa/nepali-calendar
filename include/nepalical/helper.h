@@ -22,7 +22,7 @@ inline std::string mahina(suint i,Lipi mode) {
         "sflt{s","d+l;/", "kf}if", "df3", "kmfu'g", "r}q"
     };
 
-    if(i<=0 && i > 7)
+    if(i<=0 || i > 7)
         throw OutOfBound();
 
     if (mode == UNI)
@@ -44,7 +44,7 @@ inline std::string bar(suint i,Lipi mode) {
         "आ", "सो", "म", "बु", "िब", "शु", "स"
     };
 
-    if(i<=0 && i > 7)
+    if(i<=0 || i > 7)
         throw OutOfBound();
 
     if (mode == UNI)

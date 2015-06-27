@@ -22,8 +22,9 @@ public:
 protected:
     virtual bool on_draw(const ::Cairo::RefPtr< ::Cairo::Context>& cr);
     void on_screen_changed(const Glib::RefPtr<Gdk::Screen>& previous_screen);
-    void move_to_bottomright(gint padding);
     bool on_window_clicked(GdkEventButton* event);
+    bool updateToday();
+    void move_to_bottomright(gint padding);
     //void on_button_clicked();
 
     // Member widgets:
@@ -35,9 +36,6 @@ protected:
 
 private:
     bool m_supportsAlpha;
-
-    Bs getToday() const;
-    bool updateToday();
 };
 
 #endif /* TRANSPARENT_H_ */

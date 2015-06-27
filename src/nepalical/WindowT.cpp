@@ -4,14 +4,16 @@
  */
 #include "nepalical/WindowT.h"
 
+/**
+ * Constructor
+ */
 WindowT::WindowT(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refGlade) :
     Gtk::Window(cobject),
     m_builder(refGlade),
     m_box(NULL),
     m_labelDate(NULL),
     m_labelMonth(NULL),
-    m_supportsAlpha(false)
-{
+    m_supportsAlpha(false) {
     // Widgets
     m_builder->get_widget("box", m_box);
     m_builder->get_widget("date", m_labelDate);
@@ -24,10 +26,10 @@ WindowT::WindowT(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refG
     stick();
 
     // Signal handlers
+    //_button.signal_clicked().connect(sigc::mem_fun(*this, &WindowT::on_button_clicked));
     signal_draw().connect(sigc::mem_fun(*this, &WindowT::on_draw));
     signal_screen_changed().connect(sigc::mem_fun(*this, &WindowT::on_screen_changed));
     signal_button_press_event().connect(sigc::mem_fun(*this, &WindowT::on_window_clicked));
-    //_button.signal_clicked().connect(sigc::mem_fun(*this, &WindowT::on_button_clicked));
     Glib::signal_timeout().connect(mem_fun(*this, &WindowT::updateToday), 60*1000); // A minute
 
     // Modify
@@ -41,25 +43,27 @@ WindowT::WindowT(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refG
     show_all();
 }
 
+/**
+ * Destructor
+ */
 WindowT::~WindowT() {
 }
 
+
+/**
+ * Updates the labels with current Bs date
+ */
 bool WindowT::updateToday() {
-    Bs bs = getToday();
+    Bs bs;
     m_labelDate->set_text(anka(bs.day(),UNI));
     m_labelMonth->set_text(anka(bs.year(),UNI)+" "+mahina(bs.month(),UNI));
+
     return true;
 }
 
-Bs WindowT::getToday() const {
-    // Get system date;
-    time_t rawtime = time(NULL);
-    struct tm * timeinfo = localtime(&rawtime);
-    // Create an Ad object using system date and Bs object from Ad
-    Ad ad(timeinfo->tm_year + 1900, timeinfo->tm_mon + 1, timeinfo->tm_mday);
-    return Bs(ad);
-}
-
+/**
+ * Moves the window to bottom right with certain padding
+ */
 void WindowT::move_to_bottomright(gint padding) {
     // Set reference to bottom right
     set_gravity(Gdk::GRAVITY_SOUTH_EAST);
@@ -114,3 +118,4 @@ void WindowT::on_button_clicked() {
     std::cout << "The button was pressed." << std::endl;
 }
 */
+

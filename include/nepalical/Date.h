@@ -15,6 +15,7 @@ class Date {
         void checkBounds();
         void validate();
     public:
+        virtual ~Date()=0;
         Date();
         Date(Data* p);
         Date(const Ymd&a, Data* p);
@@ -24,7 +25,8 @@ class Date {
         suint day() const;
         int week() const;
         int total() const;
-        virtual ~Date()=0;
+        suint daysInMonth() const;
+        suint daysInYear() const;
 };
 
 
@@ -70,5 +72,12 @@ inline int Date::week() const {
     return  ( totalDays + 6) % 7 + 1;
 }
 
-#endif
+inline suint Date::daysInMonth() const {
+    return data->get(daet.year(),daet.month());
+}
 
+inline suint Date::daysInYear() const {
+    return data->get(daet.year(),13);
+}
+
+#endif
