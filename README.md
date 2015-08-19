@@ -14,7 +14,7 @@ Install the application with:
 
 ```bash
 # Get dependencies
-sudo apt-get install libgtkmm-3.0-dev libgstreamermm-0.10-dev libgdamm5.0-dev 
+sudo apt-get install libgtkmm-3.0-dev
 
 # Installation
 make nepalical

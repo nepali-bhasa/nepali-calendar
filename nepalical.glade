@@ -144,7 +144,7 @@
                   <object class="GtkLabel" id="complete.week1">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">आ</property>
+                    <property name="label" translatable="yes">आ	</property>
                     <property name="max_width_chars">0</property>
                     <attributes>
                       <attribute name="font-desc" value="&lt;Enter Value&gt; 14"/>
@@ -805,6 +805,66 @@
                     <property name="left_attach">6</property>
                     <property name="top_attach">5</property>
                   </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="complete.nep36">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="xpad">7</property>
+                    <property name="ypad">9</property>
+                    <property name="label" translatable="yes">&lt;span font='14' fgcolor='white'&gt;&lt;b&gt;२० &lt;/b&gt;&lt;/span&gt;&lt;span font='8' fgcolor='white'&gt;&lt;sub&gt;14&lt;/sub&gt;&lt;/span&gt;</property>
+                    <property name="use_markup">True</property>
+                    <property name="justify">right</property>
+                    <property name="track_visited_links">False</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">6</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="complete.nep37">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="xpad">7</property>
+                    <property name="ypad">9</property>
+                    <property name="label" translatable="yes">&lt;span font='14' fgcolor='white'&gt;&lt;b&gt;२० &lt;/b&gt;&lt;/span&gt;&lt;span font='8' fgcolor='white'&gt;&lt;sub&gt;14&lt;/sub&gt;&lt;/span&gt;</property>
+                    <property name="use_markup">True</property>
+                    <property name="justify">right</property>
+                    <property name="track_visited_links">False</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">6</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="complete.nep38">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="xpad">7</property>
+                    <property name="ypad">9</property>
+                    <property name="label" translatable="yes">&lt;span font='14' fgcolor='white'&gt;&lt;b&gt;२० &lt;/b&gt;&lt;/span&gt;&lt;span font='8' fgcolor='white'&gt;&lt;sub&gt;14&lt;/sub&gt;&lt;/span&gt;</property>
+                    <property name="use_markup">True</property>
+                    <property name="justify">right</property>
+                    <property name="track_visited_links">False</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">6</property>
+                  </packing>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
                 </child>
               </object>
               <packing>

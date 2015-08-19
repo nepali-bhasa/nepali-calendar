@@ -50,3 +50,5 @@ uninstall:
 	rm /usr/local/bin/nepalical -f
 	rm "$$HOME/.config/autostart/nepalical.desktop" -f
 	rm "$$HOME/.local/share/applications/nepalical.desktop" -f
+
+reinstall: uninstall install

@@ -105,7 +105,7 @@ bool WindowT::updateToday() {
 
     }
 
-    for(int i=bs.daysInMonth()+j+1;i<=35;i++){
+    for(int i=bs.daysInMonth()+j+1;i<=38;i++){
         m_builder->get_widget("complete.nep"+std::to_string(i), m_labelNep);
         m_labelNep->set_text("");
     }
