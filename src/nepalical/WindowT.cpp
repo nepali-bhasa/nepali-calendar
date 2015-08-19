@@ -59,8 +59,6 @@ WindowT::~WindowT() {
 bool WindowT::updateToday() {
     Bs bs;
     Ad ad = bs.firstday();
-    // get week of first date
-    int j=ad.week()-1;
 
     // Compact
     Gtk::Label* m_labelDate = NULL;
@@ -80,32 +78,33 @@ bool WindowT::updateToday() {
 
     Gtk::Label* m_labelNep= NULL;
 
+    // get week of first date (intial offset)
+    int j=ad.week()-1;
+
+    // Clear all the pre-boxes
     for(int i=1;i<=j;i++){
         m_builder->get_widget("complete.nep"+std::to_string(i), m_labelNep);
         m_labelNep->set_text("");
     }
 
-    for(int i=1, k=ad.day();i<=bs.daysInMonth();i++,k++){
+    // Fill the required boxes
+    for(int i=0, k=ad.day(); i<bs.daysInMonth(); i++, k++){
+        m_builder->get_widget("complete.nep"+std::to_string((j+i)%35+1), m_labelNep);
+
+        // Make sure english day doesn't cross its month
         if(k>ad.daysInMonth())
             k = 1;
-
-        m_builder->get_widget("complete.nep"+std::to_string(j+i), m_labelNep);
-
-        if(i==bs.day()){
-            m_labelNep->set_markup(
-                    " <span font='14' fgcolor='#fcfcafaf3e3e'><b>"+anka(i,Lipi::UNI)+" </b></span>"
-                    "<span font='8' fgcolor='#fcfcafaf3e3e'><sub>"+std::to_string(k)+"</sub></span>"
-                    );
-        } else {
-            m_labelNep->set_markup(
-                    " <span font='14' fgcolor='white'>"+anka(i,Lipi::UNI)+" </span>"
-                    "<span font='8' fgcolor='white'><sub>"+std::to_string(k)+"</sub></span>"
-                    );
-        }
-
+        // Get different color for today
+        std::string color = (i+1)==bs.day()?"#fcfcafaf3e3e":"white";
+        // Set the value for the box
+        m_labelNep->set_markup(
+                " <span font='14' fgcolor='"+color+"'><b>"+anka(i+1,Lipi::UNI)+" </b></span>"
+                "<span font='8' fgcolor='"+color+"'><sub>"+std::to_string(k)+"</sub></span>"
+                );
     }
 
-    for(int i=bs.daysInMonth()+j+1;i<=38;i++){
+    // Clear all the post-boxes
+    for(int i=bs.daysInMonth()+j+1;i<=35;i++){
         m_builder->get_widget("complete.nep"+std::to_string(i), m_labelNep);
         m_labelNep->set_text("");
     }
