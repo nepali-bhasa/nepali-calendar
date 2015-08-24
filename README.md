@@ -13,8 +13,9 @@ Checkout the latest sources with:
 Install the application with:
 
 ```bash
-# Get dependencies
+# Get dependencies and fonts
 sudo apt-get install libgtkmm-3.0-dev
+sudo apt-get install ttf-indic-fonts ttf-indic-fonts-core ttf-punjabi-fonts
 
 # Installation
 make nepalical
