@@ -9,13 +9,13 @@ enum Lipi {ENG,NEP,UNI};
 
 inline std::string mahina(suint i,Lipi mode) {
     static const std::string eng[] = {
-        "Baisakh", "Jestha", "Ashad", "Shrawan", "",
+        "Baisakh", "Jestha", "Ashad", "Shrawan", "Bhadra",
         "Ashoj", "Kartik", "Mangsir", "Poush", "Magh",
         "Falgun", "Chaitra"
     };
     static const std::string uni[] = {
         "बैशाख", "जेष्ठ", "आषाढ", "श्रावन", "भाद्र", "असोज",
-        "काितॅक", "मंिसर", "पौष", "माघ", "फागुन", "चैत्र"
+        "कार्तिक", "मंसिर", "पौष", "माघ", "फागुन", "चैत्र"
     };
     static const std::string nep[] = {
         "a}zfv", "h]i7", "cfiff9", ">fjg", "efb|", "c;f]h",
