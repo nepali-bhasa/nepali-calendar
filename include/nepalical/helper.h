@@ -22,7 +22,7 @@ inline std::string mahina(suint i,Lipi mode) {
         "sflt{s","d+l;/", "kf}if", "df3", "kmfu'g", "r}q"
     };
 
-    if(i<=0 || i > 7)
+    if(i<=0 || i > 12)
         throw OutOfBound();
 
     if (mode == UNI)
