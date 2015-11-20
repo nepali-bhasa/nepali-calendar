@@ -7,6 +7,18 @@
 // Select the output language
 enum Lipi {ENG,NEP,UNI};
 
+inline std::string month(suint i) {
+    static const std::string eng[] = {
+        "Jan", "Feb", "Mar", "Apr", "May",
+        "Jun", "Jul", "Aug", "Sep", "Oct",
+        "Nov", "Dec"
+    };
+
+    if(i<=0 || i > 12)
+        throw OutOfBound();
+    return eng[i-1];
+}
+
 inline std::string mahina(suint i,Lipi mode) {
     static const std::string eng[] = {
         "Baisakh", "Jestha", "Ashad", "Shrawan", "Bhadra",
@@ -75,6 +87,14 @@ inline std::string anka(suint i,Lipi mode) {
         else if (mode == UNI)
             temp = uni[i%10]+temp;
         i /= 10;
+    }
+    if (temp==""){
+        if (mode == ENG)
+            temp = eng[0];
+        else if (mode == NEP)
+            temp = nep[0];
+        else if (mode == UNI)
+            temp = uni[0];
     }
     return temp;
 }

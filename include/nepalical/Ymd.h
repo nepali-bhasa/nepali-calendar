@@ -2,6 +2,9 @@
 #define __YMD__
 
 #include "nepalical/ex.h"
+#include <iostream>
+#include <cstring>
+#include <string>
 
 typedef unsigned short int suint;
 
@@ -11,6 +14,8 @@ private:
 public:
     // Constructor
     Ymd();
+
+    Ymd(std::string text);
 
     // Constructor
     Ymd(suint y, suint m, suint d);
@@ -38,6 +43,21 @@ public:
     // Get year from Ymd
     suint day() const;
 };
+
+inline Ymd::Ymd(std::string text){
+    char* str;
+    char* pch;
+    try {
+        str = strcpy((char*)malloc(text.length()+1), text.c_str());
+        y = std::stoi(std::strtok (str,".-/"));
+        m = std::stoi(strtok (NULL,".-/"));
+        d = std::stoi(strtok (NULL,".-/"));
+        delete []str;
+    } catch (...) {
+        delete []str;
+        throw InputNotGood();
+    }
+}
 
 inline Ymd::Ymd():
     y(1), m(1), d(1) {

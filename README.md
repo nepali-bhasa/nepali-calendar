@@ -1,11 +1,21 @@
-#NepaliCalendar
+# Nepali Calendar
 
-##Description
-A calendar application that displays current Nepali date. It converts Gregorian date to Nepali date and vice versa.
+Nepalical is a calendar widget built using GTK.
 
-![alt tag](https://cloud.githubusercontent.com/assets/4928045/8354146/5aeef82e-1b65-11e5-8e60-527f938f42f0.png)
+![image](https://cloud.githubusercontent.com/assets/4928045/11301994/c059a502-8fc2-11e5-99fc-9875167f4eba.png)
 
-##Installing
+
+## Overview
+The calendar widget appears on the bottom-left corner of the screen on startup and includes two modes: *compact* and *full*. The modes can be toggled using a click event. You can manually run the calendar using:
+
+    nepalical
+
+A command-line conversion tool is also installed to convert Gregorian date to Nepali date and vice versa. You can run the converter using:
+
+    nepaliconv
+
+
+## Installing
 Checkout the latest sources with:
 
     git clone https://github.com/tnagorra/nepalical
@@ -15,16 +25,17 @@ Install the application with:
 ```bash
 # Get dependencies and fonts
 sudo apt-get install libgtkmm-3.0-dev
-sudo apt-get install ttf-indic-fonts ttf-indic-fonts-core ttf-punjabi-fonts
+sudo apt-get install ttf-indic-fonts
 
 # Installation
 make nepalical
 sudo make install
 ```
 
-##License
+## License
 It is distributed under [GNU GPL][1]. A copy of the license is available in the distributed LICENSE file.
 
 
 [1]: http://www.gnu.org/licenses/gpl.txt
+
 
