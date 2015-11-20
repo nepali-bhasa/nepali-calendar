@@ -28,7 +28,7 @@ sudo apt-get install libgtkmm-3.0-dev
 sudo apt-get install ttf-indic-fonts
 
 # Installation
-make nepalical
+make
 sudo make install
 ```
 

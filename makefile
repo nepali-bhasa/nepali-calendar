@@ -60,6 +60,7 @@ install:
 	cp "nepalical.glade" "/usr/share/nepalical" -f
 	cp "bin/nepalical" "/usr/local/bin" -f
 	cp "bin/nepaliconv" "/usr/local/bin" -f
+	cp "nepalical-keyboard.sh" "/usr/local/bin" -f
 	mkdir "$$HOME/.local/share/applications" -p
 	cp "nepalical.desktop" "$$HOME/.local/share/applications" -f
 	mkdir "$$HOME/.config/autostart" -p
@@ -69,6 +70,7 @@ uninstall:
 	rm /usr/share/nepalical -r -f
 	rm /usr/local/bin/nepalical -f
 	rm /usr/local/bin/nepaliconv -f
+	cp "/usr/local/bin/nepalical-keyboard.sh" -f
 	rm "$$HOME/.config/autostart/nepalical.desktop" -f
 	rm "$$HOME/.local/share/applications/nepalical.desktop" -f
 
