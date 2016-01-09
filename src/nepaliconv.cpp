@@ -8,98 +8,72 @@
 
 std::string getCmdOption(char ** begin, char ** end, const std::string & option);
 bool cmdOptionExists(char** begin, char** end, const std::string& option);
+void printDate(Date& d, std::string& format, Lipi lipi);
 
-// TODO:
-// move mahina/bar to respective classes and use virtual functions
-// fix padding
-// better command line options
-
-// Parse
-void printNepaliDate(Date& d, std::string& format, Lipi lipi){
-    for(int i=0; i<format.length(); i++){
-        switch (format[i]){
-            case 'y': std::cout << anka(d.year(), lipi); break;
-            case 'm': std::cout << anka(d.month(), lipi); break;
-            case 'd': std::cout << anka(d.day(), lipi); break;
-            case 'w': std::cout << anka(d.week(), lipi); break;
-            case 'M': std::cout << mahina(d.month(), lipi); break;
-            case 'W': std::cout << bar(d.week(), lipi); break;
-            default: std::cout << format[i]; break;
-        }
-    }
-    std::cout << std::endl;
-}
-
-void printEnglishDate(Date& d, std::string& format){
-    for(int i=0; i<format.length(); i++){
-        switch (format[i]){
-            case 'y': std::cout << anka(d.year(), ENG); break;
-            case 'm': std::cout << anka(d.month(), ENG); break;
-            case 'd': std::cout << anka(d.day(), ENG); break;
-            case 'w': std::cout << anka(d.week(), ENG); break;
-            case 'M': std::cout << month(d.month()); break;
-            case 'W': std::cout << bar(d.week(), ENG); break;
-            default: std::cout << format[i]; break;
-        }
-    }
-    std::cout << std::endl;
-}
-
-// Parse
-void printEnglishDate(Date& d, std::string& format, Lipi lipi){
-    for(int i=0; i<format.length(); i++){
-        switch (format[i]){
-            case 'y': std::cout << anka(d.year(), lipi); break;
-            case 'm': std::cout << anka(d.month(), lipi); break;
-            case 'd': std::cout << anka(d.day(), lipi); break;
-            case 'w': std::cout << anka(d.week(), lipi); break;
-            case 'M': std::cout << mahina(d.month(), lipi); break;
-            case 'W': std::cout << bar(d.week(), lipi); break;
-            default: std::cout << format[i]; break;
-        }
-    }
-    std::cout << std::endl;
-}
-
+const std::string helptxt = \
+"USAGE:\n\
+    nepaliconv (-bs (-e|-u|-n) [yyyy.mm.dd] | -ad [yyyy.mm.dd])\n\
+    [-f FORMAT] [-h]\n\
+\n\
+OPTIONS:\n\
+    -h              Show help\n\
+    -bs YYYY.MM.DD  Convert to B.S.\n\
+    -ad YYYY.MM.DD  Convert to A.D.\n\
+    -e              Display in English\n\
+    -u              Display in Nepali Unicode\n\
+    -n              Display in Nepali Bakaman\n\
+    -f FORMAT       Define display format\n\
+\n\
+FORMAT:\n\
+    y   year\n\
+    m   month\n\
+    d   day\n\
+    w   weekday\n\
+    M   month name\n\
+    W   weekday name\n\
+\n\
+EXAMPLES:\n\
+    Show today's Nepali date in Unicode\n\
+        nepaliconv -bs -u\n\
+\n\
+    Show today's Gregorian date wth year and month\n\
+        nepaliconv -ad -f y.m\n\
+\n\
+    Convert given Gregorian date to Nepali date\n\
+        nepaliconv -bs 2012.10.14    \n\
+\n\
+    Convert given Nepali date to Gregorian date\n\
+        nepaliconv -ad 2061.11.12\n\
+";
 
 int main(int argc, char* argv[]) {
-    Lipi lipi = ENG;
-    if (cmdOptionExists(argv, argv + argc, "-N")) {
-        lipi = NEP;
-    } else if (cmdOptionExists(argv, argv + argc, "-E")) {
-        lipi = ENG;
-    } else if (cmdOptionExists(argv, argv + argc, "-U")) {
-        lipi = UNI;
-    }
 
-    std::string format;
-    if (cmdOptionExists(argv, argv + argc, "-f")) {
-        format = getCmdOption(argv, argv + argc, "-f");
-    }
-    if (format==""){
-        format = "W y.m.d";
-    }
-
-
+    // Display help
     if (cmdOptionExists(argv, argv + argc, "-h")) {
-        std::cout <<
-"Usage:\n\
-nepaliconv [-h] (-n [yyyy.mm.dd] (-E | -U | -N) | -e [yyyy.mm.dd]) [-f FORMAT]\n\
-\n\
-Options:\n\
--h                  Show this help\n\
--n yyyy.mm.dd       Convert to B.S.\n\
--e yyyy.mm.dd       Convert to A.D.\n\
--E                  Display in English\n\
--U                  Display in Nepali (Unicode)\n\
--N                  Display in Nepali (Bakaman)\n\
--f FORMAT           Define display format (Ex. y-m-d M W/w)"
-        << std::endl;
+        std::cout << helptxt << std::endl;
+        exit(0);
+    }
 
-    } else if (cmdOptionExists(argv, argv + argc, "-n")) {
+    // Get the language for output
+    Lipi lipi = ENG;
+    if (cmdOptionExists(argv, argv + argc, "-n"))
+        lipi = NEP;
+    else if (cmdOptionExists(argv, argv + argc, "-e"))
+        lipi = ENG;
+    else if (cmdOptionExists(argv, argv + argc, "-u"))
+        lipi = UNI;
 
+    // Get the format for output
+    std::string format = "y.m.d W";
+    if (cmdOptionExists(argv, argv + argc, "-f")){
+        std::string fmt = getCmdOption(argv, argv + argc, "-f");
+        if (fmt!="")
+            format = fmt;
+    }
+
+    if (cmdOptionExists(argv, argv + argc, "-bs")) {
         Bs* b;
-        std::string date = getCmdOption(argv, argv + argc, "-n");
+        std::string date = getCmdOption(argv, argv + argc, "-bs");
         if (date == "") {
             b = new Bs();
         } else {
@@ -107,14 +81,12 @@ Options:\n\
             Ad a(x);
             b = new Bs(a);
         }
-        // Printing part
-        printNepaliDate(*b, format, lipi);
+        printDate(*b, format, lipi);
         delete b;
 
-    } else if (cmdOptionExists(argv, argv + argc, "-e")) {
-
+    } else if (cmdOptionExists(argv, argv + argc, "-ad")) {
         Ad* a;
-        std::string date = getCmdOption(argv, argv + argc, "-e");
+        std::string date = getCmdOption(argv, argv + argc, "-ad");
         if (date == "") {
             a = new Ad();
         } else {
@@ -122,16 +94,30 @@ Options:\n\
             Bs b(x);
             a = new Ad(b);
         }
-        printEnglishDate(*a, format);
+        printDate(*a, format, ENG);
         delete a;
 
     } else {
-        std::cout << "You need help, sucker! Try -h" << std::endl;
+        std::cout << "Looks like you need some help! Try -h" << std::endl;
     }
 
     return 0;
 }
 
+void printDate(Date& d, std::string& format, Lipi lipi){
+    for(int i=0; i<format.length(); i++){
+        switch (format[i]){
+            case 'y': std::cout << anka(d.year(), lipi); break;
+            case 'm': std::cout << anka(d.month(), lipi, 2); break;
+            case 'd': std::cout << anka(d.day(), lipi, 2); break;
+            case 'w': std::cout << anka(d.week(), lipi); break;
+            case 'M': std::cout << mahina(d.month(), lipi); break;
+            case 'W': std::cout << bar(d.week(), lipi); break;
+            default: std::cout << format[i]; break;
+        }
+    }
+    std::cout << std::endl;
+}
 
 std::string getCmdOption(char ** begin, char ** end, const std::string & option) {
     char ** itr = std::find(begin, end, option);

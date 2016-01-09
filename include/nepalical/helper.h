@@ -1,6 +1,7 @@
 #ifndef __HELPER__
 #define __HELPER__
 
+#include <cmath>
 #include <iostream>
 #include <string>
 
@@ -67,7 +68,7 @@ inline std::string bar(suint i,Lipi mode) {
         return eng[i-1];
 }
 
-inline std::string anka(suint i,Lipi mode) {
+inline std::string anka(suint x,Lipi mode, suint space=0) {
     static const std::string eng[] = {
         "0","1","2","3","4","5","6","7","8","9"
     };
@@ -78,25 +79,27 @@ inline std::string anka(suint i,Lipi mode) {
         "०","१","२","३","४","५","६","७","८","९"
     };
 
-    std::string temp("");
-    while(i) {
-        if(mode == ENG)
-            temp = eng[i%10]+temp;
-        else if (mode == NEP)
-            temp = nep[i%10]+temp;
-        else if (mode == UNI)
-            temp = uni[i%10]+temp;
-        i /= 10;
+    const std::string* fmt;
+    switch(mode){
+        case ENG: fmt = eng; break;
+        case NEP: fmt = nep; break;
+        case UNI: fmt = uni; break;
+        default: fmt = eng;
     }
-    if (temp==""){
-        if (mode == ENG)
-            temp = eng[0];
-        else if (mode == NEP)
-            temp = nep[0];
-        else if (mode == UNI)
-            temp = uni[0];
-    }
-    return temp;
+
+    // Return if x is 0
+    if (x==0)
+        return fmt[0];
+
+    std::string word("");
+    for(int i=x; i>0;i/=10)
+        word = fmt[i%10]+word;
+
+    // Padding output with extra zeros
+    int fill = space-((int)std::log10(x)+1);
+    for (int i=0; i< fill;i++)
+        word = fmt[0] + word;
+    return word;
 }
 
 #endif

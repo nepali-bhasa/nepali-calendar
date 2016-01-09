@@ -55,7 +55,7 @@ $(BINDIR):
 clean:
 	rm -rf bin/*
 
-install:
+install-cal:
 	mkdir "/usr/share/nepalical" -p
 	cp "nepalical.glade" "/usr/share/nepalical" -f
 	cp "bin/nepalical" "/usr/local/bin" -f
@@ -64,14 +64,11 @@ install:
 	mkdir "$$HOME/.config/autostart" -p
 	cp "nepalical.desktop" "$$HOME/.config/autostart" -f
 
-uninstall:
+uninstall-cal:
 	rm /usr/share/nepalical -r -f
 	rm /usr/local/bin/nepalical -f
 	rm "$$HOME/.config/autostart/nepalical.desktop" -f
 	rm "$$HOME/.local/share/applications/nepalical.desktop" -f
-
-reinstall: uninstall install
-
 
 install-conv:
 	mkdir "/usr/share/nepalical" -p
