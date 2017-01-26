@@ -25,22 +25,24 @@ Checkout the latest sources:
 
     git clone https://github.com/tnagorra/nepalical
 
+Install nepalical:
+
+```bash
+# Get dependencies for gtkmm-3.0 and indic fonts
+# The indic fonts are optional dependencies
+# For Ubuntu 16.04
+sudo apt-get install gtkmm-3.0 fonts-indic
+
+# Install
+make nepalical
+sudo make install-cal
+```
+
 Install nepaliconv:
 
 ```bash
 make nepaliconv
 sudo make install-conv
-```
-
-Install nepalical:
-
-```bash
-# Get dependencies
-sudo apt-get install libgtkmm-3.0-dev ttf-indic-fonts
-
-# Install
-make nepalical
-sudo make install-cal
 ```
 
 ## License
